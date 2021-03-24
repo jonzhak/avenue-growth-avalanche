@@ -39,7 +39,7 @@ function getToken(){
           }
      }
 
-     return json_encode($response);
+     return $response;
 }
 
 if($_GET['getToken']){ getToken() };
