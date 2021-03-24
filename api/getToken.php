@@ -31,15 +31,17 @@ function getToken(){
      
      $resp = array();
 
-     if($result){
-          $response = json_decode( $result );
+     print_r($result);
+     
+     // if($result){
+     //      $response = json_decode( $result );
 
-          if(isset($response->token_type) && !empty($response->token_type) && isset($response->access_token) && !empty($response->access_token)){
-               $resp['token'] = $response->token_type." ".$response->access_token;
-          }
-     }
+     //      if(isset($response->token_type) && !empty($response->token_type) && isset($response->access_token) && !empty($response->access_token)){
+     //           $resp['token'] = $response->token_type." ".$response->access_token;
+     //      }
+     // }
 
-     return $resp;
+     // return $resp;
 }
 
 if($_GET['getToken']){ getToken() };
