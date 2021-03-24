@@ -5,29 +5,98 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Avenue Growth Users</title>
+    <style>
+          table, th, td {
+               border: 1px solid black;
+          }
+     </style>
 </head>
 <body>
-
+     <table>
+          <thead>
+               <tr>
+                <th>Header content 1</th>
+                <th>Header content 2</th>
+                <th>Header content 2</th>
+                <th>Header content 2</th>
+                <th>Status</th>
+              </tr>
+          </thead>
+          <tbody>
+          </tbody>
+     </table>
 </body>
 
 <script type="text/javascript">
-
+     
      let clientId = 'NiwToJ2Mlkn4ubzbymnC18vM08WSXyb5';
+     
+     var body = document.getElementsByTagName("tbody")[0];
 
      fetch('https://salty-reef-38656.herokuapp.com/events/all_referred_users?clientId=' + clientId, {
           method: 'GET',
           headers: {
-               'Content-Type': 'application/json',
+           'Content-Type': 'application/json',
           },
      }).then(response => {
           if(response.ok){
-               return response.json();
+          return response.json();
           } else {
-               return response;
+           return response;
           }
      }).then(data => {
-          console.log(data);
+          let tableHTML = '';
+          for (var i = 0; i < data.length; i++)
+          {    
+               if(data[i].status == 'Invitation accepted'){
+                    tableHTML += '<tr>'+
+                                   '<td>'+ data[i].name +'</td>'+
+                                   '<td>'+ data[i].referrer +'</td>'+
+                                   '<td>'+   data[i].referral_code +'</td>'+
+                                   '<td>'+ data[i].email +'</td>'+
+                                   '<td><select name="status" id="status-select"><option value="-">Set Status</option><option value="paid">Paid</option><option value="notPaid">Not paid</option></select></td>'+
+                               '</tr>';
+               }
+          }
+          body.innerHTML = tableHTML;
      });
+     
+     document.addEventListener('change', function (event)
+     {     
+          var selectOption = document.querySelector('#status-select');
+          
+          if(selectOption.value == 'paid'){
 
+               fetch('api/getToken', {
+                    method: 'GET'
+               }).then(response => {
+                    if(response.ok){
+                         return response.json();
+                    }
+               }).then(json => {
+                    
+                    let accessToken = json.token;
+          
+                    let email = 'dougstidolph@gmail.com';
+                    
+                    fetch('https://salty-reef-38656.herokuapp.com/events/give_reward?email=' + email, {
+                         method: 'POST',
+                         headers: {
+                           'Content-Type': 'application/json',
+                           'Authorization': accessToken,
+                         },
+                    }).then(response => {
+                         if(response.ok){
+                         return response.json();
+                         } else {
+                          return response;
+                         }
+                    }).then(data => {
+                         console.log(data);
+                    });
+               });
+                    
+          }
+     });
 </script>
 </html>
