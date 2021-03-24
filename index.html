@@ -11,31 +11,23 @@
 </body>
 
 <script type="text/javascript">
-     fetch('api/getToken', {
-          method: 'GET'
-     }).then(response => {
-          if(response.ok){
-               return response.json();
-          }
-     }).then(json => {
-          
-          let accessToken = json.token;
 
-          fetch('https://salty-reef-38656.herokuapp.com/events/all_referred_users?clientId=NiwToJ2Mlkn4ubzbymnC18vM08WSXyb5', {
-               method: 'GET',
-               headers: {
-                    'Content-Type': 'application/json',
-                    // 'Authorization': accessToken,
-               },
-          }).then(response => {
-               if(response.ok){
-                    return response.json();
-               } else {
-                    return response;
-               }
-          }).then(data => {
-               console.log(data);
-          });
+     let clientId = 'NiwToJ2Mlkn4ubzbymnC18vM08WSXyb5';
+
+     fetch('https://salty-reef-38656.herokuapp.com/events/all_referred_users?clientId=' + clientId, {
+          method: 'GET',
+          headers: {
+               'Content-Type': 'application/json',
+          },
+     }).then(response => {
+          isf(response.ok){
+               return response.json();
+          } else {
+               return response;
+          }
+     }).then(data => {
+          console.log(data);
      });
+     
 </script>
 </html>
