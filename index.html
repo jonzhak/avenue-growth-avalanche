@@ -20,7 +20,7 @@
                'Content-Type': 'application/json',
           },
      }).then(response => {
-          isf(response.ok){
+          if(response.ok){
                return response.json();
           } else {
                return response;
@@ -28,6 +28,6 @@
      }).then(data => {
           console.log(data);
      });
-     
+
 </script>
 </html>
