@@ -18,7 +18,24 @@
                return response.json();
           }
      }).then(json => {
-          console.log(json.token)
+          
+          let accessToken = json.token;
+
+          fetch('http://salty-reef-38656.herokuapp.com/users_with_premium?email=sergei@use-avalanche.com', {
+               method: 'GET',
+               headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': accessToken,
+               },
+          }).then(response => {
+               if(response.ok){
+                    return response.json();
+               } else {
+                    return response;
+               }
+          }).then(data => {
+               console.log(data);
+          });
      });
 </script>
 </html>
