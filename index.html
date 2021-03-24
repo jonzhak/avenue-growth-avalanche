@@ -20,8 +20,9 @@
      }).then(json => {
           
           let accessToken = json.token;
-
-          fetch('https://salty-reef-38656.herokuapp.com/users_with_premium', {
+          let mail = 'sergei@use-avalanche.com';
+          
+          fetch('https://salty-reef-38656.herokuapp.com/users_with_premium?email=' + mail, {
                method: 'GET',
                headers: {
                     'Content-Type': 'application/json',
