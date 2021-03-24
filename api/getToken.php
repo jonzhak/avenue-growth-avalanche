@@ -29,7 +29,7 @@ function getToken(){
      
      curl_close($ch);
      
-     $resp = [];
+     $resp = array();
 
      if($result){
           $response = json_decode( $result );
@@ -39,7 +39,7 @@ function getToken(){
           }
      }
 
-     echo $resp;
+     return $resp;
 }
 
 if($_GET['getToken']){ getToken() };
