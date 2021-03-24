@@ -11,18 +11,14 @@
 </body>
 
 <script type="text/javascript">
-
-     let xhr = new XMLHttpRequest();
-     
-     xhr.open('GET', 'api/getToken');
-     xhr.send();
-     
-     xhr.onload = function() {
-          if (xhr.status != 200) {
-
-          } else {
-               console.log(xhr);
+     fetch('api/getToken', {
+          method: 'GET'
+     }).then(response => {
+          if(response.ok){
+               return response.json();
           }
-     }
+     }).then(json => {
+          console.log(json.token)
+     });
 </script>
 </html>
