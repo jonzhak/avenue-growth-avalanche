@@ -1,11 +1,14 @@
 <?php 
 
 function getToken(){
-     $url = 'https://useavalanche.us.auth0.com/oauth/token';
-          
+     
+     $url                = 'https://useavalanche.us.auth0.com/oauth/token';
+     $client_id          = 'NiwToJ2Mlkn4ubzbymnC18vM08WSXyb';
+     $client_secret      = '_BxwOPM0xfZ6n2OUch75BjuJ8kvvuOzSLzZtmoGp5rCVfW3neYIQkBaTnGmMLWDM';
+
      $data = array(
-          'client_id' => 'NiwToJ2Mlkn4ubzbymnC18vM08WSXyb5', 
-          'client_secret' => '_BxwOPM0xfZ6n2OUch75BjuJ8kvvuOzSLzZtmoGp5rCVfW3neYIQkBaTnGmMLWDM',
+          'client_id' => $client_id, 
+          'client_secret' => $client_secret,
           'audience' => 'https://useavalanche.us.auth0.com/api/v2/',
           'grant_type' => 'client_credentials'
      );
