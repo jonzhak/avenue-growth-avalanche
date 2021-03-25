@@ -39,10 +39,9 @@
                          }
                     }).then(json => {
 
-                              let accessToken = json.token;
+                         let accessToken = json.token;
                               
-                              // https://salty-reef-38656.herokuapp.com
-                         fetch('http://192.168.14.65:5000/events/all_premium_users?clientId=' + clientId, {
+                         fetch('https://salty-reef-38656.herokuapp.com/events/all_premium_users?clientId=' + clientId, {
                               method: 'GET',
                               headers: {
                                'Content-Type': 'application/json',
