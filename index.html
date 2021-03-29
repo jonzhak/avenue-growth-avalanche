@@ -5,12 +5,541 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-    <title>Avenue Growth Users</title>
-    <style>body{margin:0;padding:0;-webkit-font-smoothing:antialiased}.table-header{display:flex;align-items:center;justify-content:space-between;padding:0 15px;border-bottom:1px solid #ddd;font-family:sans-serif;font-size:16px}.btn{cursor:pointer;color:#fff;background-color:#007bff;border-color:#007bff;display:inline-block;font-weight:400;text-align:center;white-space:nowrap;vertical-align:middle;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;border:1px solid transparent;padding:.25rem .5rem;font-size:.875rem;line-height:1.5;border-radius:.2rem;transition:color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out}.btn:disabled{opacity:.5;pointer-events:none}.styled-table{width:100%}.styled-table{border-collapse:collapse;font-size:14px;font-family:sans-serif;min-width:400px}.styled-table thead tr{background-color:#fff;color:#212121;text-align:left;border-bottom:1px solid #ddd}.styled-table td{padding:12px 15px}.styled-table th{padding:20px 15px}.styled-table tbody tr{border-bottom:1px solid #ddd}.styled-table tbody tr:nth-of-type(even){background-color:#f3f3f3}select{display:block;width:130px;padding:5px 20px;font-size:14px;font-weight:500;line-height:1.5;color:#212529;background-color:#fff;background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");background-repeat:no-repeat;background-position:right .75rem center;background-size:16px 12px;border:1px solid #ced4da;border-radius:.25rem;-webkit-appearance:none;-moz-appearance:none;appearance:none}select:focus{border-color:#86b7fe;outline:0;box-shadow:0 0 0 .25rem rgba(13,110,253,.25)}</style>     
+    <title>Avenue Growth Premium Users</title>
+    <style>
+         body {
+                margin: 0;
+                padding: 0;
+                -webkit-font-smoothing: antialiased;
+            }
+
+            .table-header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 0 15px;
+                border-bottom: 1px solid #ddd;
+                font-family: sans-serif;
+                font-size: 16px;
+            }
+
+            .table-right-info {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            th.flex {
+                display: flex;
+                justify-content: space-between;
+            }
+
+            span.sort-by-email.disable {
+                pointer-events: none;
+            }
+
+            span.sort-by-email {
+                margin-left: 10px;
+                cursor: pointer;
+            }
+
+            th.flex svg {
+                color: #007bff;
+                fill: #007bff;
+                width: 14px;
+                height: 14px;
+            }
+
+            .table-right-info .total {
+                margin-right: 50px;
+                display: block;
+                font-size: 1.17em;
+                font-weight: bold;
+            }
+
+            .btn {
+                cursor: pointer;
+                color: #fff;
+                background-color: #007bff;
+                border-color: #007bff;
+                display: inline-block;
+                font-weight: 400;
+                text-align: center;
+                white-space: nowrap;
+                vertical-align: middle;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+                border: 1px solid transparent;
+                padding: .25rem .5rem;
+                font-size: .875rem;
+                line-height: 1.5;
+                border-radius: .2rem;
+                transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+            }
+
+            .btn:disabled {
+                opacity: 0.5;
+                pointer-events: none;
+            }
+
+            .styled-table {
+                width: 100%
+            }
+
+            .styled-table {
+                border-collapse: collapse;
+                font-size: 14px;
+                font-family: sans-serif;
+                min-width: 400px;
+            }
+
+            .styled-table thead tr {
+                background-color: #fff;
+                color: #212121;
+                text-align: left;
+                border-bottom: 1px solid #ddd
+            }
+
+            .styled-table td {
+                padding: 12px 15px;
+                border-right: 1px solid #ddd;
+            }
+               .styled-table td:last-child {
+                    border-right: none;
+               }
+               
+            .styled-table th {
+                padding: 20px 15px;
+                border-right: 1px solid #ddd;
+            }
+               .styled-table th:last-child {
+                    border-right: none;
+               }
+            .styled-table tbody tr {
+                border-bottom: 1px solid #ddd
+            }
+
+            .styled-table tbody tr:nth-of-type(even) {
+                background-color: #f3f3f3
+            }
+
+            select {
+                display: block;
+                width: 130px;
+                padding: 5px 20px;
+                font-size: 14px;
+                font-weight: 500;
+                line-height: 1.5;
+                color: #212529;
+                background-color: #fff;
+                background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+                background-repeat: no-repeat;
+                background-position: right .75rem center;
+                background-size: 16px 12px;
+                border: 1px solid #ced4da;
+                border-radius: .25rem;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                appearance: none
+            }
+
+            select:focus {
+                border-color: #86b7fe;
+                outline: 0;
+                box-shadow: 0 0 0 .25rem rgba(13,110,253,.25)
+            }
+    </style>     
 </head>
-<body> <div class="table-header"> <h3>Avenue Growth Premium Users</h3> <button class="btn" disabled>Download as .csv</button> </div><table class="styled-table"> <thead> <tr> <th>Referrer Name</th> <th>Referrer Email</th> <th>Referral code</th> <th>Referred email</th> <th>Status</th> </tr></thead> <tbody> </tbody> </table></body>
+<body>
+     <div class="table-header">
+          <h3>Avenue Growth Premium Users</h3>
+          <div class="table-right-info">
+               <div class="total">Total:<span></span></div>
+               <button class="btn" disabled>Download as .csv</button>
+          </div>
+     </div>
+    <table class="styled-table sortable">
+          <thead>
+               <tr>
+                <th>Referrer Name</th>
+                <th class="flex">Referrer Email<span class="sort-by-email disable"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z"/></svg></span></th>
+                <th>Referral code</th>
+                <th>Referred email</th>
+                <th>Status</th>
+                <th>Balance</th>
+              </tr>
+          </thead>
+<!--
+          <tbody>       
+          </tbody>
+-->
+               <tbody>
+                  <tr data-email="argenis@boitas.com" data-balance="">
+                     <td>Marcelo</td>
+                     <td>marcelo@boitas.com</td>
+                     <td>CcmOOsoz-</td>
+                     <td>argenis@boitas.com</td>
+                     <td>
+                        <select name="status" class="status-select">
+                           <option value="paid" selected="">Paid</option>
+                           <option value="notPaid">Not paid</option>
+                        </select>
+                     </td>
+                     <td>Paid</td>
+                  </tr>
+                  <tr data-email="argenis@boitas.com" data-balance="">
+                     <td>Marcelo</td>
+                     <td>marcelo@boitas.com</td>
+                     <td>CcmOOsoz-</td>
+                     <td>argenis@boitas.com</td>
+                     <td>
+                        <select name="status" class="status-select">
+                           <option value="paid" selected="">Paid</option>
+                           <option value="notPaid">Not paid</option>
+                        </select>
+                     </td>
+                     <td>Paid</td>
+                  </tr>
+                  <tr data-email="pavlukovskaya.ek@gmail.com" data-balance="20">
+                     <td>sj</td>
+                     <td>sergei@use-avalanche.com</td>
+                     <td>zpxzW3vQC</td>
+                     <td>pavlukovskaya.ek@gmail.com</td>
+                     <td>
+                        <select name="status" class="status-select">
+                           <option value="paid">Paid</option>
+                           <option value="notPaid" selected="">Not paid</option>
+                        </select>
+                     </td>
+                     <td>20</td>
+                  </tr>
+                  <tr data-email="pavlukovskaya.ek@gmail.com" data-balance="20">
+                     <td>sj</td>
+                     <td>sergei@use-avalanche.com</td>
+                     <td>zpxzW3vQC</td>
+                     <td>pavlukovskaya.ek@gmail.com</td>
+                     <td>
+                        <select name="status" class="status-select">
+                           <option value="paid">Paid</option>
+                           <option value="notPaid" selected="">Not paid</option>
+                        </select>
+                     </td>
+                     <td>20</td>
+                  </tr>
+                  <tr data-email="psdf@gmail.com" data-balance="20">
+                     <td>sj</td>
+                     <td>s@use-avalanche.com</td>
+                     <td>zpxzW3vQC</td>
+                     <td>psdf@gmail.com</td>
+                     <td>
+                        <select name="status" class="status-select">
+                           <option value="paid">Paid</option>
+                           <option value="notPaid" selected="">Not paid</option>
+                        </select>
+                     </td>
+                     <td>20</td>
+                  </tr>
+                  <tr data-email="psdf@gmail.com" data-balance="20">
+                     <td>sj</td>
+                     <td>s@use-avalanche.com</td>
+                     <td>zpxzW3vQC</td>
+                     <td>psdf@gmail.com</td>
+                     <td>
+                        <select name="status" class="status-select">
+                           <option value="paid">Paid</option>
+                           <option value="notPaid" selected="">Not paid</option>
+                        </select>
+                     </td>
+                     <td>20</td>
+                  </tr>
+                  <tr data-email="pavlukovskaya.ek@gmail.com" data-balance="20">
+                     <td>sj</td>
+                     <td>sergei@use-avalanche.com</td>
+                     <td>zpxzW3vQC</td>
+                     <td>pavlukovskaya.ek@gmail.com</td>
+                     <td>
+                        <select name="status" class="status-select">
+                           <option value="paid">Paid</option>
+                           <option value="notPaid" selected="">Not paid</option>
+                        </select>
+                     </td>
+                     <td>20</td>
+                  </tr>
+               </tbody>
+     </table>
+</body>
+
 <script type="text/javascript">
-     let clientId="NiwToJ2Mlkn4ubzbymnC18vM08WSXyb5";
-     $("button").on("click",function(){var n="",t=(new Date).toISOString().slice(0,10),e=[];$("table tr").each(function(n,t){var o=[];$(t).find("th, td").each(function(n,t){$(this).find(".status-select").length>0?o.push($(this).find("option:selected").text()):o.push(t.innerText)}),e.push(o.join(","))}),n+=e.join("\n"),$(document.body).append('<a id="download-link" download="export-'+t+'.csv" href='+URL.createObjectURL(new Blob([n],{type:"text/csv"}))+"/>"),$("#download-link")[0].click(),$("#download-link").remove()});var body=document.getElementsByTagName("tbody")[0];fetch("api/getToken.php",{method:"GET"}).then(e=>{if(e.ok)return e.json()}).then(e=>{let t=e.token;fetch("https://salty-reef-38656.herokuapp.com/events/all_premium_users?clientId="+clientId,{method:"GET",headers:{"Content-Type":"application/json",Authorization:t}}).then(e=>e.ok?e.json():e).then(e=>{let t="";$('button').prop('disabled', false);for(var a=0;a<e.length;a++){var o;o=null!=e[a].reward_claimed?'<select name="status" class="status-select"><option value="paid" selected>Paid</option><option value="notPaid">Not paid</option></select>':'<select name="status" class="status-select"><option value="paid">Paid</option><option value="notPaid" selected>Not paid</option></select>',t+='<tr data-email="'+e[a].email+'"><td>'+e[a].name+"</td><td>"+e[a].referrer+"</td><td>"+e[a].referral_code+"</td><td>"+e[a].email+"</td><td>"+o+"</td></tr>"}body.innerHTML=t}),$("body").on("change","select",function(e){$("option:selected",this);if("paid"==this.value){let e=$(this).parent().parent().data("email");fetch("https://salty-reef-38656.herokuapp.com/events/v2/give_reward",{method:"POST",headers:{"Content-Type":"application/json",Authorization:t},body:JSON.stringify({email:e})}).then(e=>e.ok?e.json():e).then(e=>{})}})});
+     
+     let clientId = 'NiwToJ2Mlkn4ubzbymnC18vM08WSXyb5';
+
+
+
+     $("button").on('click', function()
+     {
+         var data = "";
+         
+         var today = new Date().toISOString().slice(0, 10);
+         
+         var tableData = [];
+         
+         var rows = $("table tr");
+         
+         rows.each(function(index, row)
+         {
+               var rowData = [];
+               
+               $(row).find("th, td").each(function(index, column) {
+                               
+                    if($(this).find('.status-select').length > 0){
+                         rowData.push($(this).find('option:selected').text());
+                    }
+                    else {
+                         rowData.push(column.innerText);
+                    }
+                            
+               });
+           
+               tableData.push(rowData.join(","));
+         });
+         
+         data += tableData.join("\n");
+         
+         $(document.body).append('<a id="download-link" download="export-'+today+'.csv" href=' + URL.createObjectURL(new Blob([data], {
+          type: "text/csv"
+         })) + '/>');
+
+         $('#download-link')[0].click();
+         
+         $('#download-link').remove();
+         
+     });
+       
+     var body = document.getElementsByTagName("tbody")[0];
+
+
+
+                    fetch('api/getToken', { // api/getToken on prod
+                         method: 'GET'
+                    }).then(response => {
+                         if(response.ok){
+                              return response.json();
+                         }
+                    }).then(json => {
+
+                              let accessToken = json.token;
+                              
+                              // 
+                         fetch('https://salty-reef-38656.herokuapp.com/events/all_premium_users?clientId=' + clientId, {
+                              method: 'GET',
+                              headers: {
+                               'Content-Type': 'application/json',
+                               'Authorization': accessToken,
+                              },
+                         }).then(response => {
+                              if(response.ok){
+                              return response.json();
+                              } else {
+                               return response;
+                              }
+                         }).then(data => {
+                              
+                              let tableHTML = '';
+
+                                $('button').prop('disabled', false);
+                                   
+                              $('.sort-by-email').removeClass('disable');
+                              
+                              for (var i = 0; i < data.length; i++)
+                              {    
+                                     var selected;
+                                     
+                                   if(data[i].reward_claimed != null){
+                                        selected = '<select name="status" class="status-select"><option value="paid" selected>Paid</option><option value="notPaid">Not paid</option></select>';
+                                   } else {
+                                      selected = '<select name="status" class="status-select"><option value="paid">Paid</option><option value="notPaid" selected>Not paid</option></select>'; 
+                                   }
+                                   
+                                   var balance;
+                                   
+                                   if(data[i].reward_claimed != null){
+                                        balance = 'Paid';
+                                   } else {
+                                        balance = '+Rs 20';
+                                   }
+                                   
+                                   var price;
+                                   
+                                   if(data[i].reward_claimed != null){
+                                        price = '';
+                                   } else {
+                                        price = 20;
+                                   }
+                                   
+                                tableHTML += '<tr data-email="'+ data[i].email +'" data-balance="'+price+'">'+
+                                    '<td>'+ data[i].name +'</td>'+
+                                    '<td>'+ data[i].referrer +'</td>'+
+                                    '<td>'+   data[i].referral_code +'</td>'+
+                                    '<td>'+ data[i].email +'</td>'+
+                                    '<td>'+ selected+'</td>'+
+                                    '<td>'+ balance +'</td>'+
+                                '</tr>';
+                              }
+                              
+                              body.innerHTML = tableHTML;
+                                   
+                                   var totalSum = 0;
+                                   var listItem = $('tbody tr[data-balance]');
+                                   
+                                   for (var i=0; i < listItem.length; i++) 
+                                   {    
+                                      totalSum += $(listItem[i]).data('balance') != '' ? parseInt($(listItem[i]).data('balance')) : 0; 
+                                   }
+                                   
+                                   $('.table-right-info .total span').text(' Rs '+totalSum);
+                                   
+                         
+                                   
+                         });
+                          
+                          $('body').on('click', '.sort-by-email', function(){
+
+                              var $tbody = $('table tbody');
+                              
+                              if($('.ttt').length === 0){
+                                   $('thead tr').append('<th class="ttt">Total owed</th>');
+
+                                   var t_body = $('tbody tr');
+                                   
+                                   for(var q = 0; q < t_body.length; q++){
+                                        $(t_body[q]).append('<td class="total-sum"></td>');
+                                   };                       
+                              }
+
+
+                              function sortTable(colNo,tableId,IsAsc)
+                              {
+                                  var table, rows, switching, i, x, y;
+                                      table = document.querySelector(tableId);
+                                      switching = true;
+                                      
+                                      while (switching) {
+                                          switching = false;
+                                          
+                                          rows = table.rows;  
+                                          
+                                          for (i = 1; i < (rows.length - 1); i++) {
+                                               
+                                            if(rows[i].getElementsByTagName("TD")[colNo] != undefined && rows[i + 1].getElementsByTagName("TD")[colNo] != undefined)
+                                            {
+                                              x = rows[i].getElementsByTagName("TD")[colNo].innerHTML.toLowerCase();
+                                              y = rows[i + 1].getElementsByTagName("TD")[colNo].innerHTML.toLowerCase();
+                                              if (x < y) {
+                                                rows[i].parentNode.insertBefore(rows[i+1], rows[i]);
+                                                switching = true;
+                                                break;
+                                              }
+                                              
+                                            }
+                                          }                                  
+                                      }
+                             }
+                              
+                              sortTable(1, '.styled-table', false);   
+
+                                   var summ = [];
+                                   
+                                   for(var q = 0; q < t_body.length; q++)
+                                   {
+                                        if( $(t_body[q]).data('email') != $(t_body[q]).prev().data('email'))
+                                        {
+                                             $(t_body[q]).addClass('group-title');   
+                                             
+                                             summ.push({
+                                                  email: $(t_body[q]).data('email'),
+                                                  summ: $(t_body[q]).data('balance')
+                                             });
+                                             
+                                        } else {
+                                             
+                                             $(t_body[q]).addClass('in-group'); 
+
+                                             for(var d = 0; d < summ.length; d++){
+                                                  
+                                                  if( summ[d].email === $(t_body[q]).data('email')){
+                                                       summ[d].summ +=     $(t_body[q]).data('balance');
+                                                  }
+                                             }
+                                             
+                                             
+                                        }
+                                   };
+                                   
+                                   console.log(summ);
+                                   
+                                   for(var q = 0; q < t_body.length; q++)
+                                   {
+                                        if( $(t_body[q]).hasClass('group-title')){
+                                             
+                                             for(var d = 0; d < summ.length; d++){
+                                                  
+                                                  if( summ[d].email === $(t_body[q]).data('email')){
+                                                       
+                                                       if( $(t_body[q]).data('balance') != ''){
+                                                            $(t_body[q]).find('td.total-sum').text('+Rs ' + summ[d].summ);
+                                                       }
+                                                       
+                                                  }
+                                             }
+                                             
+                                             
+                                        }
+                                   }
+                                                                                                                                  
+                          });
+
+
+                              
+                         $('body').on('change', 'select', function(event)
+                         {     
+                              
+                              var optionSelected = $("option:selected", this);
+                                   
+                                   console.log(this.value);
+                    
+                                   if(this.value == 'paid'){
+                    
+                                             
+                                   let email = $(this).parent().parent().data('email');
+                                   
+                                        
+                                     fetch('https://salty-reef-38656.herokuapp.com/events/v2/give_reward', {
+                                        method: 'POST',
+                                        headers: {
+                                          'Content-Type': 'application/json',
+                                          'Authorization': accessToken,
+                                        },
+                                        body: JSON.stringify({email: email}),
+                                   }).then(response => {
+                                        if(response.ok){
+                                        return response.json();
+                                        } else {
+                                         return response;
+                                        }
+                                   }).then(data => {
+                                        console.log(data);
+                                   });
+                    
+                    
+                                        
+                              }
+                         });
+          
+                    });
+     
+     
+
 </script>
 </html>
