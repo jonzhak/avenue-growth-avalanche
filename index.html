@@ -29,27 +29,6 @@
                 align-items: center;
             }
 
-            th.flex {
-                display: flex;
-                justify-content: space-between;
-            }
-
-            span.sort-by-email.disable {
-                pointer-events: none;
-            }
-
-            span.sort-by-email {
-                margin-left: 10px;
-                cursor: pointer;
-            }
-
-            th.flex svg {
-                color: #007bff;
-                fill: #007bff;
-                width: 14px;
-                height: 14px;
-            }
-
             .table-right-info .total {
                 margin-right: 50px;
                 display: block;
@@ -164,15 +143,14 @@
           <thead>
                <tr>
                 <th>Referrer Name</th>
-                <th class="flex">Referrer Email<span class="sort-by-email disable"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z"/></svg></span></th>
+                <th>Referrer Email</th>
                 <th>Referral code</th>
                 <th>Referred email</th>
                 <th>Status</th>
                 <th>Balance</th>
               </tr>
           </thead>
-               <tbody>
-                 
+               <tbody>       
                </tbody>
      </table>
 </body>
@@ -294,7 +272,7 @@
                                 '</tr>';
                               }
                               
-                              body.innerHTML = tableHTML;
+                                   body.innerHTML = tableHTML;
                                    
                                    var totalSum = 0;
                                    var listItem = $('tbody tr[data-balance]');
@@ -307,12 +285,7 @@
                                    $('.table-right-info .total span').text(' Rs '+totalSum);
                                    
                          
-                                   
-                         });
-                          
-                          $('body').on('click', '.sort-by-email', function(){
-
-                              var $tbody = $('table tbody');
+                                   var $tbody = $('table tbody');
                               
                               if($('.ttt').length === 0){
                                    $('thead tr').append('<th class="ttt">Total owed</th>');
@@ -403,8 +376,12 @@
                                              
                                         }
                                    }
+                         });
+                          
+
+                              
                                                                                                                                   
-                          });
+
 
 
                               
