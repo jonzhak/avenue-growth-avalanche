@@ -156,8 +156,8 @@
 </body>
 
 <script type="text/javascript">
-     
-     let clientId = 'K41DI7udEo4OGVFRnECcJWeeyrqTpllW';
+    
+    let clientId = 'K41DI7udEo4OGVFRnECcJWeeyrqTpllW';
 
 
 
@@ -205,7 +205,7 @@
 
 
 
-                    fetch('api/getToken', { // api/getToken on prod
+                    fetch('/api/getToken.php', { // api/getToken on prod
                          method: 'GET'
                     }).then(response => {
                          if(response.ok){
@@ -216,7 +216,7 @@
                               let accessToken = json.token;
                               
                               // 
-                         fetch('https://salty-reef-38656.herokuapp.com/events/all_premium_users?clientId=' + clientId, {
+                         fetch('http://localhost:5000/events/all_premium_users?clientId=' + clientId, {
                               method: 'GET',
                               headers: {
                                'Content-Type': 'application/json',
@@ -235,12 +235,39 @@
                                 $('button').prop('disabled', false);
                                    
                               $('.sort-by-email').removeClass('disable');
-                              
+							  
+							  /*Collect summ of total owned by referrer*/
+							  var dublesSum = [];
+							  
+							  var uniqueData = Array.from(new Set(data.map(a => a.referrer)))
+							  .map(referrer => {
+								return data.find(a => a.referrer === referrer)
+							  });
+							  
+							  for (var n = 0; n < data.length; n++)
+                              {
+								for (var m = 0; m < uniqueData.length; m++)
+								{
+									if(data[n].referrer == uniqueData[m].referrer){
+										if(dublesSum[data[n].referrer] && dublesSum[data[n].referrer]['sum'] && dublesSum[data[n].referrer]['sum'] > 0){
+											dublesSum[data[n].referrer]['sum'] = dublesSum[data[n].referrer]['sum'] + 20;
+										} else {
+											dublesSum[data[n].referrer] = [];
+											dublesSum[data[n].referrer]['sum'] = 20;
+										}
+									}
+								}
+							  }
+							  /*result in dublesSum array*/
+							  
+							  /*Varuables for unique insert of totalOwned*/
+							  var didAddedTotalOwned = [], addingTotalOwned = '';
+							  
                               for (var i = 0; i < data.length; i++)
                               {    
                                      var selected;
-                                     
-                                   if(data[i].reward_claimed != null){
+                                    console.log(data[i]);
+                                   if(data[i].reward_claimed !== null){
                                         selected = '<select name="status" class="status-select"><option value="paid" selected>Paid</option><option value="notPaid">Not paid</option></select>';
                                    } else {
                                       selected = '<select name="status" class="status-select"><option value="paid">Paid</option><option value="notPaid" selected>Not paid</option></select>'; 
@@ -249,7 +276,7 @@
                                    var balance;
                                    
                                    if(data[i].reward_claimed != null){
-                                        balance = 'Paid';
+                                        balance = '0 (Paid)';
                                    } else {
                                         balance = '+Rs 20';
                                    }
@@ -261,6 +288,13 @@
                                    } else {
                                         price = 20;
                                    }
+								   
+								   if(didAddedTotalOwned[data[i].referrer]){
+									addingTotalOwned = '';
+								   } else {
+									addingTotalOwned = '+Rs '+ dublesSum[data[i].referrer]['sum'];
+									didAddedTotalOwned[data[i].referrer] = true;
+								   }
                                    
                                 tableHTML += '<tr data-email="'+ data[i].email +'" data-balance="'+price+'">'+
                                     '<td>'+ data[i].name +'</td>'+
@@ -269,8 +303,10 @@
                                     '<td>'+ data[i].email +'</td>'+
                                     '<td>'+ selected+'</td>'+
                                     '<td>'+ balance +'</td>'+
+                                    '<td>'+ addingTotalOwned +'</td>'+
                                 '</tr>';
                               }
+							  console.log('didAddedTotalOwned', didAddedTotalOwned)
                               
                                    body.innerHTML = tableHTML;
                                    
@@ -278,7 +314,7 @@
                                    var listItem = $('tbody tr[data-balance]');
                                    
                                    for (var i=0; i < listItem.length; i++) 
-                                   {    
+                                   {    								      
                                       totalSum += $(listItem[i]).data('balance') != '' ? parseInt($(listItem[i]).data('balance')) : 0; 
                                    }
                                    
@@ -356,9 +392,17 @@
                                    };
                                    
                                    console.log(summ);
-                                   
+								   
                                    for(var q = 0; q < t_body.length; q++)
                                    {
+										var currentReferrer = $(t_body[q]).find('td:eq(1)').text();
+										
+										//totalOwned = dublesSum[currentReferrer]['sum'];
+										//$(t_body[q]).find('td.total-sum').text('+Rs ' + totalOwned);
+										//var allTbody = $('tbody').find('tr:contains(' + currentReferrer + ')');
+										//console.log(allTbody);
+										//.contains(currentReferrer)[0].find('td.total-sum').text('+Rs ' + totalOwned);
+										/*No needed anymore
                                         if( $(t_body[q]).hasClass('group-title')){
                                              
                                              for(var d = 0; d < summ.length; d++){
@@ -374,6 +418,7 @@
                                              
                                              
                                         }
+										*/
                                    }
                          });
                           
@@ -397,7 +442,7 @@
                                    let email = $(this).parent().parent().data('email');
                                    
                                         
-                                     fetch('https://salty-reef-38656.herokuapp.com/events/v2/give_reward', {
+                                     fetch('http://localhost:5000/events/v2/give_reward', {
                                         method: 'POST',
                                         headers: {
                                           'Content-Type': 'application/json',
