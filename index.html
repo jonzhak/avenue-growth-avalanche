@@ -157,7 +157,7 @@
 
 <script type="text/javascript">
     
-    let clientId = 'K41DI7udEo4OGVFRnECcJWeeyrqTpllW';
+    let clientId = 'NROSOxbEa8SnMIuvR9BYWwKsVZZzOgcB';
 
 
 
@@ -216,7 +216,7 @@
                               let accessToken = json.token;
                               
                               // 
-                         fetch('http://localhost:5000/events/all_premium_users?clientId=' + clientId, {
+                         fetch('https://salty-reef-38656.herokuapp.com/events/all_premium_users?clientId=' + clientId, {
                               method: 'GET',
                               headers: {
                                'Content-Type': 'application/json',
@@ -445,7 +445,7 @@
                                    let email = $(this).parent().parent().data('email');
                                    
                                         
-                                     fetch('http://localhost:5000/events/v2/give_reward', {
+                                     fetch('https://salty-reef-38656.herokuapp.com/events/v2/give_reward', {
                                         method: 'POST',
                                         headers: {
                                           'Content-Type': 'application/json',
