@@ -255,6 +255,9 @@
 											dublesSum[data[n].referrer] = [];
 											dublesSum[data[n].referrer]['sum'] = 20;
 										}
+										if(data[n].reward_claimed !== null){
+											dublesSum[data[n].referrer]['sum'] = dublesSum[data[n].referrer]['sum'] - 20;
+										}
 									}
 								}
 							  }
